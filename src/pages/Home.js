@@ -1,11 +1,17 @@
 /* eslint-disable arrow-body-style */
 import React from 'react'
+import { Col, Grid, Row } from 'rsuite'
+import Sidebar from '../components/Sidebar'
 
 const Home = () => {
     return (
-        <div>
-            pr
-        </div>
+        <Grid fluic className="h-100">
+            <Row>
+                <Col xs={24} md={8}>
+                    <Sidebar />
+                </Col>
+            </Row>
+        </Grid>
     )
 }
 
