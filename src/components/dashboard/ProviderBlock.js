@@ -57,7 +57,7 @@ const ProviderBlock = () => {
         link(new firebase.auth.FacebookAuthProvider())
     }
     const LinkGoogle = () => {
-        link(new firebase.auth.GithubAuthProvider())
+        link(new firebase.auth.GoogleAuthProvider())
     }
 
     return (
