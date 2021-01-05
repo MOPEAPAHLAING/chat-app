@@ -10,7 +10,7 @@ import ProfileAvatar from '../../ProfileAvatar';
 import IconBtnControl from './IconBtnControl';
 import ProfileInfoBtnModal from './ProfileInfoBtnModal';
 
-const MessageItem = ({message, handleAdmin, handleLike}) => {
+const MessageItem = ({message, handleAdmin, handleLike, handleDelete}) => {
 
     const {author, createdAt, text, likes, likeCount} = message;
 
@@ -41,16 +41,14 @@ const MessageItem = ({message, handleAdmin, handleLike}) => {
                     appearance="link" 
                     className="p-0 ml-1 text-black" 
                 >
-                    {canGrantAdmin && 
-                    <Button block onClick={() => handleAdmin(author.uid)} color="blue">
-                        {isMsgAuthorAdmin ? 'Remove admin permission' : 'Give admin in this room'}
-                    </Button>
-                    }
+                    {canGrantAdmin && (
+                        <Button block onClick={() => handleAdmin(author.uid)} color="blue">
+                            {isMsgAuthorAdmin ? 'Remove admin permission' : 'Give admin in this room'}
+                        </Button>
+                    )}
                 </ProfileInfoBtnModal>
                 <TimeAgo
-                    datetime={
-                        createdAt
-                    }
+                    datetime={createdAt}
                     className="font-normal text-black-45 ml-2"
                 />
                 <IconBtnControl
@@ -61,6 +59,17 @@ const MessageItem = ({message, handleAdmin, handleLike}) => {
                     onClick={() => handleLike(message.id)}
                     badgeContent={likeCount}
                 />
+
+                {
+                    isAuthor && (
+                        <IconBtnControl
+                            isVisible={canShowIcons}
+                            iconName="close"
+                            tooltip="Delete this message"
+                            onClick={() => handleDelete(message.id)}
+                        />
+                    )
+                }
             </div>
 
             <div>
